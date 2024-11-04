@@ -5,7 +5,8 @@ using System;
 public class Death : NetworkBehaviour
 {
     [SerializeField] Health health;
-    //[SerializeField] Ammo ammo;
+
+    public Action onDeathEvent;
 
     public override void OnNetworkSpawn()
     {
@@ -16,8 +17,7 @@ public class Death : NetworkBehaviour
     {
         if (!health.HasHealth())
         {
-            health.Reset();
-            //ammo.Reset();
+            onDeathEvent?.Invoke();
         }
     }
 }
