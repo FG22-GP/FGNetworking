@@ -9,7 +9,7 @@ public class Health : NetworkBehaviour
     public NetworkVariable<int> currentHealth = new NetworkVariable<int>();
     public Action onDamageTakenEvent;
 
-    private const int maxHealth = 100;
+    public int MaxHealth { get; private set; } = 100;
 
     public override void OnNetworkSpawn()
     {
@@ -33,13 +33,12 @@ public class Health : NetworkBehaviour
 
     private void ChangeHealth(int amount)
     {
-        currentHealth.Value += amount;
-        Mathf.Clamp(currentHealth.Value, 0, maxHealth);
+        currentHealth.Value = Mathf.Clamp(currentHealth.Value + amount, 0, MaxHealth);
     }
 
     public void Reset()
     {
-        currentHealth.Value = 100;
+        currentHealth.Value = MaxHealth;
     }
 
     public bool HasHealth()

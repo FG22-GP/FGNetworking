@@ -7,7 +7,6 @@ public class AmmoMine : NetworkBehaviour
 {
 
     [SerializeField] GameObject minePrefab;
-    public int ammoAmount;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +14,7 @@ public class AmmoMine : NetworkBehaviour
         {
             Ammo ammo = other.GetComponent<Ammo>();
             if (!ammo) return;
-            //health.TakeDamage(25);
+            ammo.Reset();
 
             int xPosition = Random.Range(-4, 4);
             int yPosition = Random.Range(-2, 2);

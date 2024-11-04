@@ -10,6 +10,7 @@ public class FiringAction : NetworkBehaviour
     [SerializeField] GameObject clientSingleBulletPrefab;
     [SerializeField] GameObject serverSingleBulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
+    [SerializeField] Ammo ammo;
 
 
     public override void OnNetworkSpawn()
@@ -19,10 +20,10 @@ public class FiringAction : NetworkBehaviour
 
     private void Fire(bool isShooting)
     {
-
-        if (isShooting)
+        if (isShooting && ammo.HasAmmo())
         {
             ShootLocalBullet();
+            ammo.RemoveAmmo(1);
         }
     }
 

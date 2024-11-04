@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour, IPlayerActions
 
     private Transform turretPivotTransform;
 
+    public float Velocity { get { return _rb.velocity.magnitude; } }
 
     public UnityAction<bool> onFireEvent;
 

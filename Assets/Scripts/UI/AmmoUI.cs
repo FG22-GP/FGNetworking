@@ -19,6 +19,6 @@ public class AmmoUI : MonoBehaviour
 
     private void UpdateUI(int previousValue, int newValue)
     {
-        loadingBarImage.fillAmount = (float)newValue / 100;
+        loadingBarImage.fillAmount = (float)newValue / ammo.MaxAmmo;
     }
 }

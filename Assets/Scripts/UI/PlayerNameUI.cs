@@ -1,23 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode;
+using Unity.Collections;
 
-public class PlayerNameUI : MonoBehaviour
+public class PlayerNameUI : NetworkBehaviour
 {
     [SerializeField] Text playerNameUi;
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    void Start()
+    NetworkVariable<FixedString32Bytes> playerName = new();
+
+    public override void OnNetworkSpawn()
     {
-        UpdateUI(UserDataWrapper.GetUserData().userName);
+        playerName.OnValueChanged += UpdateUI;
+        if (!IsOwner) return;
+        playerName.Value = UserDataWrapper.GetUserData().userName;
     }
 
-    private void UpdateUI(string name)
+    private void UpdateUI(FixedString32Bytes oldName, FixedString32Bytes newName)
     {
-        playerNameUi.text = name;
+        playerNameUi.text = newName.ToString();
     }
 }
