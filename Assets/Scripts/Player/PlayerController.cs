@@ -28,6 +28,7 @@ public class PlayerController : NetworkBehaviour, IPlayerActions
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
         if (!IsOwner) return;
 
         if (_playerInput == null)

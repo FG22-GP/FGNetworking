@@ -11,11 +11,6 @@ public class Health : NetworkBehaviour
 
     public int MaxHealth { get; private set; } = 100;
 
-    public override void OnNetworkSpawn()
-    {
-        if (!IsServer) return;
-    }
-
     public void TakeDamage(int damage)
     {
         damage = damage < 0 ? damage : -damage;

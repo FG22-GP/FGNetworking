@@ -10,6 +10,7 @@ public class Death : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
         health.onDamageTakenEvent += OnDamageTaken;
     }
 

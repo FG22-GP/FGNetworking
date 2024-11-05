@@ -7,11 +7,6 @@ public class Ammo : NetworkBehaviour
 
     public int MaxAmmo { get; private set; } = 10;
 
-    public override void OnNetworkSpawn()
-    {
-        if (!IsServer) return;
-    }
-
     public void AddAmmo(int ammo)
     {
         ammo = ammo > 0 ? ammo : -ammo;

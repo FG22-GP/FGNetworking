@@ -12,6 +12,7 @@ public class Lives : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
         death.onDeathEvent += OnDeath;
         if (!IsServer) return;
         currentLives.Value = MaxLives;
