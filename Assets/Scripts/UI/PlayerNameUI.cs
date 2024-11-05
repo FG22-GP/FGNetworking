@@ -1,18 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Netcode;
 using Unity.Collections;
 
-public class PlayerNameUI : NetworkBehaviour
+public class PlayerNameUI : MonoBehaviour
 {
     [SerializeField] Text playerNameUi;
-    NetworkVariable<FixedString32Bytes> playerName = new();
+    [SerializeField] PlayerName playerName;
 
-    public override void OnNetworkSpawn()
+    void Start()
     {
-        playerName.OnValueChanged += UpdateUI;
-        if (!IsOwner) return;
-        playerName.Value = UserDataWrapper.GetUserData().userName;
+        playerName.playerName.OnValueChanged += UpdateUI;
     }
 
     private void UpdateUI(FixedString32Bytes oldName, FixedString32Bytes newName)

@@ -6,7 +6,7 @@ using System;
 
 public class Health : NetworkBehaviour
 {
-    public NetworkVariable<int> currentHealth = new NetworkVariable<int>();
+    public NetworkVariable<int> currentHealth = new NetworkVariable<int>(100);
     public Action onDamageTakenEvent;
 
     public int MaxHealth { get; private set; } = 100;
@@ -14,7 +14,6 @@ public class Health : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (!IsServer) return;
-        Reset();
     }
 
     public void TakeDamage(int damage)
@@ -33,11 +32,13 @@ public class Health : NetworkBehaviour
 
     private void ChangeHealth(int amount)
     {
+        if (!IsServer) return;
         currentHealth.Value = Mathf.Clamp(currentHealth.Value + amount, 0, MaxHealth);
     }
 
     public void Reset()
     {
+        if (!IsServer) return;
         currentHealth.Value = MaxHealth;
     }
 

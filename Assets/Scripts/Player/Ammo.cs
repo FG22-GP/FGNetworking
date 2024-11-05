@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
 public class Ammo : NetworkBehaviour
 {
-    public NetworkVariable<int> currentAmmo = new NetworkVariable<int>();
+    public NetworkVariable<int> currentAmmo = new NetworkVariable<int>(10);
 
     public int MaxAmmo { get; private set; } = 10;
 
     public override void OnNetworkSpawn()
     {
         if (!IsServer) return;
-        Reset();
     }
 
     public void AddAmmo(int ammo)
@@ -29,11 +26,13 @@ public class Ammo : NetworkBehaviour
 
     private void ChangeAmmoAmount(int amount)
     {
+        if (!IsServer) return;
         currentAmmo.Value = Mathf.Clamp(currentAmmo.Value + amount, 0, MaxAmmo);
     }
 
     public void Reset()
     {
+        if (!IsServer) return;
         currentAmmo.Value = MaxAmmo;
     }
 

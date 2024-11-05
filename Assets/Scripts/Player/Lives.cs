@@ -7,18 +7,19 @@ public class Lives : NetworkBehaviour
     [SerializeField] Health health;
     [SerializeField] Ammo ammo;
 
-    NetworkVariable<int> currentLives = new();
+    NetworkVariable<int> currentLives = new(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public int MaxLives { get; private set; } = 3;
 
     public override void OnNetworkSpawn()
     {
         death.onDeathEvent += OnDeath;
-        if (!IsOwner) return;
+        if (!IsServer) return;
         currentLives.Value = MaxLives;
     }
 
     private void OnDeath()
     {
+        if (!IsServer) return;
         currentLives.Value--;
         if (currentLives.Value > 0)
         {

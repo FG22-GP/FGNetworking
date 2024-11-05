@@ -8,9 +8,8 @@ public class BoatVisual : NetworkBehaviour
     [SerializeField] Sprite idleSprite;
     [SerializeField] Sprite movingSprite;
 
-    public NetworkVariable<bool> IsMoving;
+    public NetworkVariable<bool> IsMoving = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!IsOwner) return;

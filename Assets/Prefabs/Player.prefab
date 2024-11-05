@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameUi: {fileID: 4384871538351055192}
+  playerName: {fileID: 9125875670640693142}
 --- !u!1 &3076901462484674528
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +205,7 @@ GameObject:
   - component: {fileID: 7053961173462396066}
   - component: {fileID: 257996712522048305}
   - component: {fileID: 4791767207192780676}
+  - component: {fileID: 9125875670640693142}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -502,6 +504,53 @@ MonoBehaviour:
   death: {fileID: 7053961173462396066}
   health: {fileID: 1795185787946825641}
   ammo: {fileID: 8952374972734050627}
+--- !u!114 &9125875670640693142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076901462484674528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f11f613ac83c454aa91c4aeb12e312a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName:
+    m_InternalValue:
+      utf8LengthInBytes: 0
+      bytes:
+        offset0000:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        byte0016: 0
+        byte0017: 0
+        byte0018: 0
+        byte0019: 0
+        byte0020: 0
+        byte0021: 0
+        byte0022: 0
+        byte0023: 0
+        byte0024: 0
+        byte0025: 0
+        byte0026: 0
+        byte0027: 0
+        byte0028: 0
+        byte0029: 0
 --- !u!1 &3147725339021067429
 GameObject:
   m_ObjectHideFlags: 0
