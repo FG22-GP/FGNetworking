@@ -8,7 +8,7 @@ public class BoatVisual : NetworkBehaviour
     [SerializeField] Sprite idleSprite;
     [SerializeField] Sprite movingSprite;
 
-    public NetworkVariable<bool> IsMoving = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> IsMoving = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     void FixedUpdate()
     {

@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using Unity.Collections;
+using UnityEngine;
 
 public class PlayerName : NetworkBehaviour
 {
@@ -7,20 +8,7 @@ public class PlayerName : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsServer) return;
-        SetUserNameServerRpc(OwnerClientId);
-    }
-
-    [ServerRpc]
-    private void SetUserNameServerRpc(ulong clientId)
-    {
-        SetUserNameClientRpc(SavedClientInformationManager.GetUserData(clientId).userName);
-    }
-
-    [ClientRpc]
-    private void SetUserNameClientRpc(string newName)
-    {
         if (!IsOwner) return;
-        playerName.Value = newName;
+        playerName.Value = UserDataWrapper.GetUserData().userName;
     }
 }
