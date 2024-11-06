@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerName : NetworkBehaviour
 {
-    public NetworkVariable<FixedString32Bytes> playerName = new(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<FixedString32Bytes> playerName { get; private set; } = new(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     void Start()
     {
@@ -15,13 +15,13 @@ public class PlayerName : NetworkBehaviour
     [ServerRpc]
     private void UsernameServerRpc(ulong clientId)
     {
-        UsernameClientRpc(SavedClientInformationManager.GetUserData(clientId).userName);
+        FixedString32Bytes userNameData = new(SavedClientInformationManager.GetUserData(clientId).userName);
+        UsernameClientRpc(userNameData);
     }
 
     [ClientRpc]
-    private void UsernameClientRpc(string username)
+    private void UsernameClientRpc(FixedString32Bytes username)
     {
-        Debug.LogWarning(username);
         if (!IsOwner) return;
         playerName.Value = username;
     }
