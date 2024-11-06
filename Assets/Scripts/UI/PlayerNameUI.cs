@@ -7,14 +7,9 @@ public class PlayerNameUI : MonoBehaviour
     [SerializeField] Text playerNameUi;
     [SerializeField] PlayerName playerName;
 
-    void OnEnable()
+    void Awake()
     {
         playerName.playerName.OnValueChanged += UpdateUI;
-    }
-
-    void OnDisable()
-    {
-        playerName.playerName.OnValueChanged -= UpdateUI;
     }
 
     private void UpdateUI(FixedString32Bytes oldName, FixedString32Bytes newName)

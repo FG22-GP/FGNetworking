@@ -6,8 +6,9 @@ public class PlayerName : NetworkBehaviour
 {
     public NetworkVariable<FixedString32Bytes> playerName { get; private set; } = new(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
         if (!IsOwner) return;
         UsernameServerRpc(NetworkManager.Singleton.LocalClientId);
     }
